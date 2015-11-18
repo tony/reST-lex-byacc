@@ -1,17 +1,15 @@
-all:
-	flex
-	build
+all: build
 
-flex:
-	flex scan.l
-
-build: flex
-	clang lex.yy.c -o scan -lfl
+build:
+	rm -rf build
+	mkdir -p build
+	cd build; cmake ..
+	make -C build
 
 test_stdin: build
-	./scan
+	./build/scanner
 
 test_example: build
-	./scan ./test/example.rst
+	./build/scanner ./test/example.rst
 
-.PHONY: flex build
+.PHONY: build
