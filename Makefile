@@ -14,7 +14,4 @@ test_stdin: build
 test_example: build
 	./scan ./test/example.rst
 
-yacc:
-	yacc -d gram.y
-
 .PHONY: flex build
