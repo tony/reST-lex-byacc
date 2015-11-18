@@ -61,8 +61,35 @@
 FIND_PROGRAM(FLEX_EXECUTABLE flex DOC "path to the flex executable")
 MARK_AS_ADVANCED(FLEX_EXECUTABLE)
 
-FIND_LIBRARY(FL_LIBRARY NAMES fl
-  DOC "path to the fl library")
+SET(FLEX_SEARCH_PATHS
+        ~/Library/Frameworks
+        /Library/Frameworks
+	/usr/src/contrib
+        /usr/local
+        /usr
+        /sw # Fink
+        /opt/local # DarwinPorts
+        /opt/csw # Blastwave
+        /opt
+        ${FLEX_PATH}
+)
+
+FIND_PATH(FLEX_INCLUDE_DIR FlexLexer.h
+        HINTS
+        $ENV{FLEXDIR}
+        PATH_SUFFIXES include/flex include
+        PATHS ${FLEX_SEARCH_PATHS}
+)
+
+FIND_LIBRARY(FL_LIBRARY
+	NAMES fl libfl
+        HINTS
+        $ENV{FLEXDIR}
+        flex
+        PATH_SUFFIXES lib64 lib
+        PATHS ${FLEX_SEARCH_PATHS}
+)
+
 MARK_AS_ADVANCED(FL_LIBRARY)
 SET(FLEX_LIBRARIES ${FL_LIBRARY})
 
