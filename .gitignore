@@ -1,3 +1,4 @@
+<<<<<<< bf4ca90f2448d6dc7c2597ad9225c54f28f530ba
 # Object files
 *.o
 *.ko
@@ -33,3 +34,6 @@
 
 # Binary output
 scan
+
+# flex output
+lex.yy.c
