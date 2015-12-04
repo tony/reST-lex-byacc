@@ -11,9 +11,8 @@ SimpleName ({Word}|[-._+:])
  * Explicit constructs are began with ..
  */
 explstart		".."
-Directive   {explstart}{space}*{SimpleName}*
-HyperlinkTarget   {explstart}{space}*"_"{SimpleName}
-DirectiveBig   {explstart}{space}*{SimpleName}*{space}*"::"
+Directive   {explstart}{space}?{SimpleName}*{space}?
+HyperlinkTarget   {explstart}{space}?"_"{SimpleName}
 /*
  * LiteralBlock "{newline}::{newline}:
  */
@@ -35,6 +34,7 @@ stop    printf("Stop command received\n");
 :::	{
 	printf("Found a literal block: %s \n", yytext);
 	}
+\n	;
 .	;
 
 %%
