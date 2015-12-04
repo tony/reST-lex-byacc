@@ -5,14 +5,14 @@
 space			[ \t\n\r\f]
 whitespace		({space}+)
 newline			[\n\r]
-Word	[a-zA-Z]+
-SimpleName ({Word}|[-._+:])
+word			[a-zA-Z]+
+simplename 		[^ \n\r]({word}|[-._+:])
 /**
  * Explicit constructs are began with ..
  */
 explstart		".."
-Directive   {explstart}{space}?{SimpleName}*{space}?
-HyperlinkTarget   {explstart}{space}?"_"{SimpleName}
+directive   {explstart}{space}?{simplename}*{space}?"::"
+hyperlink_target   {explstart}{space}?"_"{simplename}":"
 /*
  * LiteralBlock "{newline}::{newline}:
  */
@@ -23,19 +23,15 @@ stop    printf("Stop command received\n");
 {explstart}		{
 	printf("Found a start of an explicit: %s \n", yytext);
 	}
-{HyperlinkTarget}		{
+{hyperlink_target}		{
 	printf("Found a hyperlink target: %s \n", yytext);
 	}
-{Directive}		{
+{directive}		{
 	printf("Found a directive: %s \n", yytext);
 	}
 
 
-:::	{
-	printf("Found a literal block: %s \n", yytext);
-	}
-\n	;
-.	;
+\n|.	;
 
 %%
 
