@@ -1,0 +1,4 @@
+-DDEBUG
+-I ./src
+-I /usr/local/include/
+-I /usr/local/include/flex/
