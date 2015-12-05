@@ -6,16 +6,15 @@ space			[ \t\n\r\f]
 whitespace		({space}+)
 newline			[\n\r]
 word			[a-zA-Z]+
-simplename 		[^ \n\r]({word}|[-._+:])
+simplename 		[^ \n\r]({word}|[-._+:]+)
 /**
  * Explicit constructs are began with ..
  */
 explstart		".."
-directive   {explstart}{space}?{simplename}*{space}?"::"
-hyperlink_target   {explstart}{space}?"_"{simplename}":"
-/*
- * LiteralBlock "{newline}::{newline}:
- */
+directive   		{explstart}{space}?{simplename}*{space}?"::"
+hyperlink_target   	{explstart}{space}?"_"({simplename}|{space})*":"
+substitution_def   	{explstart}{space}?"|"{simplename}"|"
+citation   	{explstart}{space}?"["{simplename}"]"{space}?
 
 %%
 start   printf("Start command received\n");
@@ -25,6 +24,9 @@ stop    printf("Stop command received\n");
 	}
 {hyperlink_target}		{
 	printf("Found a hyperlink target: %s \n", yytext);
+	}
+{substitution_def}		{
+	printf("Found a subsitition definition: %s \n", yytext);
 	}
 {directive}		{
 	printf("Found a directive: %s \n", yytext);
