@@ -20,6 +20,8 @@ debug_ninja: mkdir_build
 	cd build; cmake -GNinja -DCMAKE_BUILD_TYPE=Debug ..
 	ninja -C build
 
+watch_debug:
+	if command -v entr > /dev/null; then find . -type f -not -path '*/\.*' | grep -i '.*[.][c,h]' | entr -c make debug_ninja; else make debug_ninja; echo "\nInstall entr(1) to automatically run tests on file change.\n See http://entrproject.org/"; fi
 
 test_stdin: build
 	./build/scanner
