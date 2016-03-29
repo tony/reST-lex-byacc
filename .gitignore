@@ -40,3 +40,6 @@ lex.yy.c
 
 # CMake Binary Directory
 build
+
+# ignore IDEA
+.idea
