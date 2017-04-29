@@ -29,4 +29,7 @@ test_stdin: build
 test_example: build
 	./build/scanner ./test/example.rst
 
+format:
+	clang-format -style=Chromium src/* -i || clang-format38 -style=Chromium src/* -i
+
 .PHONY: mkdir_build
