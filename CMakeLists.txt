@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.3)
 project(reST)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${reST_SOURCE_DIR}/cmake")
+
 find_package(FLEX)
+
+
 include_directories(${FLEX_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
 file(GLOB SRC_FILES src/*.c)
