@@ -66,6 +66,7 @@ SET(FLEX_SEARCH_PATHS
         /Library/Frameworks
 	/usr/src/contrib
         /usr/local
+        /usr/local/opt/flex # brew
         /usr
         /sw # Fink
         /opt/local # DarwinPorts
